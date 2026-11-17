@@ -160,16 +160,6 @@ svg { display: block; }
   border: 1px solid var(--line);
   border-radius: var(--radius);
 }
-.module-icon {
-  display: grid;
-  place-items: center;
-  flex: 0 0 auto;
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  background: var(--accent-soft);
-  color: var(--accent);
-}
 .stat { min-width: 0; }
 .stat-label { display: block; color: var(--muted); line-height: 16px; font-size: 12px; }
 .stat-value { display: flex; align-items: center; flex-wrap: wrap; gap: 2px 7px; margin-top: 4px; }
@@ -447,7 +437,6 @@ svg { display: block; }
   .intro { gap: 8px; }
   .intro h1 { font-size: 27px; line-height: 32px; }
   .test-label { margin-top: 1px; padding-inline: 6px; font-size: 11px; }
-  .module-icon { width: 26px; height: 26px; }
   .detail-grid { grid-template-columns: 1fr; }
   .detail-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .detail-metrics .stat { border-left: 0 !important; padding-left: 0 !important; }
@@ -755,7 +744,6 @@ svg { display: block; }
 .admin-detail-head {
   display: flex;
   align-items: center;
-  gap: 12px;
   min-height: 64px;
   padding: 15px 23px;
   border-bottom: 1px solid var(--light-line);
@@ -2352,13 +2340,12 @@ function summaryPage() {
 }
 
 
-function adminDetailCard(key, label, iconName) {
+function adminDetailCard(key, label) {
   const { people, visits, adds, leaves } = data.admin[key];
   const groupId = "admin-group-" + key;
   const timeUnit = state.days > 30 ? "По неделям" : "По дням";
   return '<section class="panel admin-detail-card" aria-labelledby="' + groupId + '">' +
-    '<header class="admin-detail-head"><span class="module-icon">' + icon(iconName, "icon-sm") +
-    '</span><h2 id="' + groupId + '">' + label + '</h2></header>' +
+    '<header class="admin-detail-head"><h2 id="' + groupId + '">' + label + '</h2></header>' +
     '<div class="admin-detail-metrics">' + stat("Численность", people) + stat("Входы", visits) +
     stat("Добавилось", adds) + stat("Выбыло", leaves) + '</div>' +
     '<div class="admin-detail-chart"><div class="admin-chart-heading"><h3>Динамика входов</h3><span>' + timeUnit + '</span></div>' +
@@ -2368,8 +2355,8 @@ function adminDetailCard(key, label, iconName) {
 function adminDetails() {
   return '<div class="admin-comparison">' + compareNote() + lineLegend() + '</div>' +
     '<div class="admin-detail-grid detail-block">' +
-    adminDetailCard("users", "Пользователи СООП", "user-round") +
-    adminDetailCard("staff", "Сотрудники подразделений", "building") + '</div>' + departmentTable();
+    adminDetailCard("users", "Пользователи СООП") +
+    adminDetailCard("staff", "Сотрудники подразделений") + '</div>' + departmentTable();
 }
 
 function groupByDepartment(group, topic) {
