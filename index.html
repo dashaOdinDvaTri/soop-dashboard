@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>СООП · Сводка по модулям</title>
+<title>СООП · Общая сводка</title>
 <link rel="icon" href="data:,">
 <style>
 @font-face {
@@ -159,16 +159,6 @@ svg { display: block; }
   background: var(--paper);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-}
-.module-icon {
-  display: grid;
-  place-items: center;
-  flex: 0 0 auto;
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  background: var(--accent-soft);
-  color: var(--accent);
 }
 .stat { min-width: 0; }
 .stat-label { display: block; color: var(--muted); line-height: 16px; font-size: 12px; }
@@ -447,7 +437,6 @@ svg { display: block; }
   .intro { gap: 8px; }
   .intro h1 { font-size: 27px; line-height: 32px; }
   .test-label { margin-top: 1px; padding-inline: 6px; font-size: 11px; }
-  .module-icon { width: 26px; height: 26px; }
   .detail-grid { grid-template-columns: 1fr; }
   .detail-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .detail-metrics .stat { border-left: 0 !important; padding-left: 0 !important; }
@@ -634,6 +623,29 @@ svg { display: block; }
 }
 .overview-breakdown-list .row-values .delta { justify-self: end; }
 .overview-breakdown-bar { height: 6px; border-radius: 4px; }
+.admin-overview-ranking { margin: 0; padding: 12px 4px 16px; }
+.admin-overview-ranking h3 { font-size: 13px; line-height: 20px; }
+.admin-overview-ranking ol {
+  display: grid;
+  gap: 8px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--ink);
+  font-size: 11px;
+  line-height: 16px;
+}
+.admin-ranking-label {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+.admin-overview-ranking .bar-track {
+  display: block;
+  margin-top: 4px;
+  height: 5px;
+}
 @container (max-width: 368px) {
   .overview-breakdown-kpis .stat-value { align-items: flex-start; flex-direction: column; }
   .overview-breakdown-list { gap: 8px; }
@@ -741,12 +753,6 @@ svg { display: block; }
   margin-top: 0;
 }
 
-.admin-detail-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-}
-
 .panel.admin-detail-card {
   min-width: 0;
   padding: 0;
@@ -755,7 +761,6 @@ svg { display: block; }
 .admin-detail-head {
   display: flex;
   align-items: center;
-  gap: 12px;
   min-height: 64px;
   padding: 15px 23px;
   border-bottom: 1px solid var(--light-line);
@@ -822,6 +827,35 @@ svg { display: block; }
   margin-top: 8px;
 }
 
+.admin-breakdown-heading { justify-content: space-between; align-items: center; gap: 8px; }
+.admin-breakdown-heading select {
+  max-width: 100%;
+  padding: 6px 8px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--paper);
+  color: var(--ink);
+}
+.admin-breakdown-list {
+  max-height: 216px;
+  overflow: auto;
+  margin: 12px 0 0;
+  padding: 0 8px 0 0;
+  list-style: none;
+}
+.admin-breakdown-list li {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(32px, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  padding-block: 4px;
+  border-bottom: 1px solid var(--light-line);
+  font-size: 13px;
+}
+.admin-breakdown-track { height: 8px; background: var(--accent-soft); border-radius: 4px; }
+.admin-breakdown-track i { display: block; height: 100%; background: var(--accent); border-radius: inherit; }
+
 .admin-detail-chart .plot svg text { font-size: 12px; }
 
 @media (max-width: 1660px) {
@@ -832,7 +866,6 @@ svg { display: block; }
 }
 
 @media (max-width: 1120px) {
-  .admin-detail-grid { grid-template-columns: minmax(0, 1fr); }
 }
 
 @media (max-width: 540px) {
@@ -843,7 +876,7 @@ svg { display: block; }
 }
 
 
-.panel.dept-panel { min-width: 0; padding: 0; }
+.panel.dept-panel { min-width: 0; padding: 0; container-type: inline-size; }
 .dept-toolbar {
   display: flex;
   align-items: center;
@@ -860,7 +893,7 @@ svg { display: block; }
 .dept-panel .table-scroll { overflow-x: auto; border-radius: 0 0 var(--radius) var(--radius); }
 .dept-table {
   width: 100%;
-  min-width: 1360px;
+  min-width: 760px;
   table-layout: fixed;
   border-collapse: separate;
   border-spacing: 0;
@@ -874,7 +907,7 @@ svg { display: block; }
 }
 .dept-table thead th { background: var(--surface-soft); color: var(--muted); }
 .dept-table thead [scope="colgroup"] { text-align: center; padding-block: 10px; font-weight: 650; }
-.dept-table thead [scope="col"] { font-size: 12px; vertical-align: bottom; }
+.dept-table thead [scope="col"] { font-size: 12px; text-align: left; vertical-align: bottom; }
 .dept-table .dept-name {
   position: sticky;
   left: 0;
@@ -886,79 +919,121 @@ svg { display: block; }
 .dept-table tbody .dept-name { background: var(--paper); font-weight: 540; }
 .dept-table tbody tr:last-child > * { border-bottom: 0; }
 .dept-table tbody tr:hover, .dept-table tbody tr:hover .dept-name { background: var(--surface-soft); }
-.dept-table .group-split { border-left: 1px solid var(--light-line); }
 .dept-table td { text-align: right; }
 .dept-table .row-values { display: grid; grid-template-columns: minmax(0, 1fr) 50px; gap: 4px; }
 .dept-table .row-values b { font-weight: 620; }
 .dept-table .row-values .delta { justify-self: end; }
 .dept-table .dept-empty { padding: 32px 16px; color: var(--muted); text-align: center; }
 
-.dept-column-head { display: flex; align-items: center; justify-content: space-between; gap: 4px; }
-.dept-sort, .dept-filter {
+.dept-sort {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  gap: 4px;
   min-height: 28px;
   padding: 0;
   border: 0;
   border-radius: 4px;
   background: transparent;
   color: inherit;
+  font-weight: 650;
+  white-space: nowrap;
 }
-.dept-sort { gap: 4px; font-weight: 650; white-space: nowrap; }
 .dept-sort-icon { width: 14px; height: 14px; color: var(--chart-reference); }
-.dept-filter { flex: 0 0 28px; color: var(--muted); }
-.dept-filter:hover, .dept-filter.is-filtered, .dept-filter[aria-expanded="true"] {
-  background: var(--accent-soft);
-  color: var(--accent);
-}
 .dept-sort:hover, .dept-table [aria-sort] .dept-sort, .dept-table [aria-sort] .dept-sort-icon { color: var(--accent); }
-.dept-sort:focus-visible, .dept-filter:focus-visible { outline-offset: -1px; }
+.dept-sort:focus-visible { outline-offset: -1px; }
 
-.dept-filter-popup {
-  position: fixed;
-  z-index: 12;
-  width: min(304px, calc(100vw - 16px));
-  max-height: calc(100vh - 16px);
-  overflow: auto;
+.dept-filters {
+  --field-outline: #9EA6C5;
+  display: grid;
+  grid-template-columns: minmax(192px, 1fr) minmax(0, 4fr) 270px;
+  align-items: end;
+  gap: 16px 24px;
   padding: 16px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--paper);
-  box-shadow: 0 8px 24px rgb(39 52 76 / 14%);
+  border-bottom: 1px solid var(--light-line);
+  background: var(--surface-soft);
 }
-.dept-filter-popup h3 { color: var(--heading); font-size: 16px; line-height: 24px; font-weight: 660; }
-.dept-filter-group { margin-top: 2px; color: var(--muted); font-size: 12px; }
-.dept-filter-range { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-.dept-filter-range, .dept-filter-text { margin-top: 12px; }
-.dept-filter-popup label { display: grid; gap: 4px; color: var(--muted); font-size: 12px; }
-.dept-filter-popup input {
+.dept-filter-name {
+  display: grid;
+  align-self: start;
+  min-width: 0;
+  padding-top: 0;
+}
+.dept-filter-groups { display: grid; min-width: 0; gap: 16px; }
+.dept-filters fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.dept-filters legend { padding: 0; }
+.dept-filter-name > span, .dept-filter-range > legend {
+  color: var(--heading);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+}
+.dept-filter-metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px 24px; }
+.dept-filter-bounds { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.dept-filters input {
   width: 100%;
   min-width: 0;
-  min-height: 36px;
-  padding: 8px;
-  border: 1px solid var(--line);
+  min-height: 40px;
+  padding: 6px 12px;
+  border: 1px solid var(--field-outline);
   border-radius: 4px;
-  background: var(--surface-soft);
+  background: var(--paper);
   color: var(--ink);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 16px;
+  line-height: 26px;
 }
-.dept-filter-error { margin-top: 8px; color: var(--negative); font-size: 12px; }
-.dept-filter-actions { display: flex; gap: 8px; margin-top: 16px; }
-.dept-primary, .dept-secondary {
-  min-height: 36px;
-  padding: 7px 12px;
-  border: 1px solid transparent;
+.dept-filters input::placeholder { color: var(--field-outline); opacity: 1; }
+.dept-filters input[type="number"] { appearance: textfield; font-variant-numeric: tabular-nums; }
+.dept-filters input::-webkit-inner-spin-button { appearance: none; }
+.dept-filters input[aria-invalid="true"] { border-color: var(--negative); }
+.dept-filter-error { grid-column: 1 / -1; color: var(--negative); font-size: 13px; }
+.dept-filter-actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(92px, 118px);
+  align-items: center;
+  justify-self: end;
+  width: 270px;
+  max-width: 100%;
+  gap: 16px;
+}
+.dept-filter-actions button {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  height: 40px;
+  padding: 6px 12px;
+  border: 0;
   border-radius: 4px;
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 20px;
+  font-size: 16px;
+  line-height: 26px;
+  text-align: center;
+  white-space: nowrap;
 }
-.dept-primary { background: var(--accent); color: var(--paper); }
-.dept-primary:hover { background: var(--accent-dark); }
-.dept-secondary { background: var(--surface-soft); color: var(--accent-dark); }
-.dept-secondary:hover { background: var(--accent-soft); }
+.dept-filter-search { background: var(--accent); color: var(--paper); }
+.dept-filter-search:hover { background: var(--accent-dark); }
+.dept-search-icon { display: inline-block; margin-right: 8px; vertical-align: middle; }
+.dept-filter-reset { background: transparent; color: var(--accent); font-weight: 500; }
+.dept-filter-reset:hover { background: var(--accent-soft); }
+
+@container (max-width: 1250px) {
+  .dept-filters { grid-template-columns: minmax(180px, 1fr) minmax(0, 4fr); }
+  .dept-filters input[type="number"] { padding-inline: 8px; }
+  .dept-filter-actions { grid-column: 2; }
+}
+@container (max-width: 890px) {
+  .dept-filters { grid-template-columns: minmax(0, 1fr); }
+  .dept-filter-name { width: min(340px, 100%); padding-top: 0; }
+  .dept-filter-actions { grid-column: 1; }
+}
+@container (max-width: 680px) {
+  .dept-filter-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 16px; }
+  .dept-filter-actions { gap: 8px; }
+  .dept-filter-actions button { padding-inline: 8px; }
+}
 
 .practice-detail-kpis {
   display: grid;
@@ -1356,7 +1431,7 @@ svg { display: block; }
   width: 32px;
   height: 32px;
   border-radius: 4px;
-  background: var(--accent);
+  background: var(--accent-dark);
 }
 .nav-link-icon .icon { width: 20px; height: 20px; }
 .nav-link:hover, .nav-toggle:hover { background: var(--muted); }
@@ -1364,7 +1439,7 @@ svg { display: block; }
   background: var(--accent-dark);
   box-shadow: inset 0 0 0 2px var(--accent-border);
 }
-.nav-link[aria-current="page"] { background: var(--accent); }
+.nav-link[aria-current="page"] { background: var(--muted); }
 .nav-link[aria-current="page"] .nav-link-icon {
   color: var(--accent);
   background: var(--paper);
@@ -1479,7 +1554,7 @@ svg { display: block; }
   </header>
   <aside class="sidebar">
     <div class="side-inner">
-      <a class="brand" id="brand" href="#summary" aria-label="СООП. Сводка по модулям" title="Сводка по модулям">
+      <a class="brand" id="brand" href="#summary" aria-label="СООП. Общая сводка" title="Общая сводка">
         <span class="brand-logo"><img class="brand-mark" src="data:image/svg+xml;base64,PHN2ZyBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiBvdmVyZmxvdz0idmlzaWJsZSIgc3R5bGU9ImRpc3BsYXk6IGJsb2NrOyIgd2lkdGg9Ijc2IiBoZWlnaHQ9Ijc2IiB2aWV3Qm94PSIwIDAgNzYgNzYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgo8ZyBpZD0ibG9nbyI+CjxnIGlkPSJGcmFtZSAyMTMxMzI5NDE5IiBmaWx0ZXI9InVybCgjZmlsdGVyMF9pXzBfMjQpIj4KPHJlY3QgeD0iMjIiIHk9IjE4IiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHJ4PSI2IiBmaWxsPSJ1cmwoI3BhaW50MF9saW5lYXJfMF8yNCkiIGZpbGwtb3BhY2l0eT0iMC42NCIvPgo8cmVjdCB4PSIyMiIgeT0iMTgiIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgcng9IjYiIGZpbGw9InVybCgjcGFpbnQxX2xpbmVhcl8wXzI0KSIgZmlsbC1vcGFjaXR5PSIwLjY0Ii8+CjxwYXRoIGlkPSJ1c2VyIiBkPSJNMzguMDk3OCAzNC4wMDEyQzQxLjI2MDYgMzQuMDAxMiA0My44MjQ1IDMxLjQyNjYgNDMuODI0NSAyOC4yNTA2QzQzLjgyNDUgMjUuMDc0NiA0MS4yNjA2IDIyLjUgMzguMDk3OCAyMi41QzM0LjkzNTEgMjIuNSAzMi4zNzEyIDI1LjA3NDYgMzIuMzcxMiAyOC4yNTA2QzMyLjM3MTIgMzEuNDI2NiAzNC45MzUxIDM0LjAwMTIgMzguMDk3OCAzNC4wMDEyWk0yNy4xMTIgNDMuNTc5OEMyNi43MDg5IDQ0LjUxODMgMjcuNDQ4IDQ1LjUgMjguNDY1OSA0NS41SDQ3LjUzNDFDNDguNTUyIDQ1LjUgNDkuMjkxMSA0NC41MTgzIDQ4Ljg4OCA0My41Nzk4QzQ0LjY3MTQgMzMuNzYwNiAzMS4zMjg2IDMzLjc2MDYgMjcuMTEyIDQzLjU3OThaIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZmlsbD0idXJsKCNwYWludDJfbGluZWFyXzBfMjQpIi8+CjwvZz4KPGZvcmVpZ25PYmplY3QgeD0iMCIgeT0iLTQiIHdpZHRoPSI3NiIgaGVpZ2h0PSI4MCI+PGRpdiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgc3R5bGU9ImJhY2tkcm9wLWZpbHRlcjpibHVyKDhweCk7Y2xpcC1wYXRoOnVybCgjYmdibHVyXzBfMF8yNF9jbGlwX3BhdGgpO2hlaWdodDoxMDAlO3dpZHRoOjEwMCUiPjwvZGl2PjwvZm9yZWlnbk9iamVjdD48ZyBpZD0iVmVjdG9yIiBmaWx0ZXI9InVybCgjZmlsdGVyMV9kaV8wXzI0KSIgZGF0YS1maWdtYS1iZy1ibHVyLXJhZGl1cz0iMTYiPgo8dXNlIHhsaW5rOmhyZWY9IiNzdHJva2UwXzBfMjQiIGZpbGw9InVybCgjcGFpbnQzX2xpbmVhcl8wXzI0KSIgZmlsbC1vcGFjaXR5PSIwLjY0IiBzaGFwZS1yZW5kZXJpbmc9ImNyaXNwRWRnZXMiLz4KPHVzZSB4bGluazpocmVmPSIjc3Ryb2tlMF8wXzI0IiBmaWxsPSJ1cmwoI3BhaW50NF9saW5lYXJfMF8yNCkiIGZpbGwtb3BhY2l0eT0iMC42NCIgc2hhcGUtcmVuZGVyaW5nPSJjcmlzcEVkZ2VzIi8+Cjx1c2UgeGxpbms6aHJlZj0iI3N0cm9rZTFfMF8yNCIgZmlsbD0idXJsKCNwYWludDVfbGluZWFyXzBfMjQpIiBmaWxsLW9wYWNpdHk9IjAuNjQiIHNoYXBlLXJlbmRlcmluZz0iY3Jpc3BFZGdlcyIvPgo8dXNlIHhsaW5rOmhyZWY9IiNzdHJva2UxXzBfMjQiIGZpbGw9InVybCgjcGFpbnQ2X2xpbmVhcl8wXzI0KSIgZmlsbC1vcGFjaXR5PSIwLjY0IiBzaGFwZS1yZW5kZXJpbmc9ImNyaXNwRWRnZXMiLz4KPHVzZSB4bGluazpocmVmPSIjc3Ryb2tlMl8wXzI0IiBmaWxsPSJ1cmwoI3BhaW50N19saW5lYXJfMF8yNCkiIGZpbGwtb3BhY2l0eT0iMC42NCIgc2hhcGUtcmVuZGVyaW5nPSJjcmlzcEVkZ2VzIi8+Cjx1c2UgeGxpbms6aHJlZj0iI3N0cm9rZTJfMF8yNCIgZmlsbD0idXJsKCNwYWludDhfbGluZWFyXzBfMjQpIiBmaWxsLW9wYWNpdHk9IjAuNjQiIHNoYXBlLXJlbmRlcmluZz0iY3Jpc3BFZGdlcyIvPgo8dXNlIHhsaW5rOmhyZWY9IiNzdHJva2UzXzBfMjQiIGZpbGw9InVybCgjcGFpbnQ5X2xpbmVhcl8wXzI0KSIgZmlsbC1vcGFjaXR5PSIwLjY0IiBzaGFwZS1yZW5kZXJpbmc9ImNyaXNwRWRnZXMiLz4KPHVzZSB4bGluazpocmVmPSIjc3Ryb2tlM18wXzI0IiBmaWxsPSJ1cmwoI3BhaW50MTBfbGluZWFyXzBfMjQpIiBmaWxsLW9wYWNpdHk9IjAuNjQiIHNoYXBlLXJlbmRlcmluZz0iY3Jpc3BFZGdlcyIvPgo8L2c+CjwvZz4KPGRlZnM+CjxmaWx0ZXIgaWQ9ImZpbHRlcjBfaV8wXzI0IiB4PSIyMiIgeT0iMTgiIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsdGVyVW5pdHM9InVzZXJTcGFjZU9uVXNlIiBjb2xvci1pbnRlcnBvbGF0aW9uLWZpbHRlcnM9InNSR0IiPgo8ZmVGbG9vZCBmbG9vZC1vcGFjaXR5PSIwIiByZXN1bHQ9IkJhY2tncm91bmRJbWFnZUZpeCIvPgo8ZmVCbGVuZCBtb2RlPSJub3JtYWwiIGluPSJTb3VyY2VHcmFwaGljIiBpbjI9IkJhY2tncm91bmRJbWFnZUZpeCIgcmVzdWx0PSJzaGFwZSIvPgo8ZmVDb2xvck1hdHJpeCBpbj0iU291cmNlQWxwaGEiIHR5cGU9Im1hdHJpeCIgdmFsdWVzPSIwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAxMjcgMCIgcmVzdWx0PSJoYXJkQWxwaGEiLz4KPGZlT2Zmc2V0Lz4KPGZlR2F1c3NpYW5CbHVyIHN0ZERldmlhdGlvbj0iMiIvPgo8ZmVDb21wb3NpdGUgaW4yPSJoYXJkQWxwaGEiIG9wZXJhdG9yPSJhcml0aG1ldGljIiBrMj0iLTEiIGszPSIxIi8+CjxmZUNvbG9yTWF0cml4IHR5cGU9Im1hdHJpeCIgdmFsdWVzPSIwIDAgMCAwIDEgMCAwIDAgMCAxIDAgMCAwIDAgMSAwIDAgMCAxIDAiLz4KPGZlQmxlbmQgbW9kZT0ibm9ybWFsIiBpbjI9InNoYXBlIiByZXN1bHQ9ImVmZmVjdDFfaW5uZXJTaGFkb3dfMF8yNCIvPgo8L2ZpbHRlcj4KPGZpbHRlciBpZD0iZmlsdGVyMV9kaV8wXzI0IiB4PSIwIiB5PSItNCIgd2lkdGg9Ijc2IiBoZWlnaHQ9IjgwIiBmaWx0ZXJVbml0cz0idXNlclNwYWNlT25Vc2UiIGNvbG9yLWludGVycG9sYXRpb24tZmlsdGVycz0ic1JHQiI+CjxmZUZsb29kIGZsb29kLW9wYWNpdHk9IjAiIHJlc3VsdD0iQmFja2dyb3VuZEltYWdlRml4Ii8+CjxmZUNvbG9yTWF0cml4IGluPSJTb3VyY2VBbHBoYSIgdHlwZT0ibWF0cml4IiB2YWx1ZXM9IjAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDEyNyAwIiByZXN1bHQ9ImhhcmRBbHBoYSIvPgo8ZmVPZmZzZXQgZHk9IjQiLz4KPGZlR2F1c3NpYW5CbHVyIHN0ZERldmlhdGlvbj0iOCIvPgo8ZmVDb21wb3NpdGUgaW4yPSJoYXJkQWxwaGEiIG9wZXJhdG9yPSJvdXQiLz4KPGZlQ29sb3JNYXRyaXggdHlwZT0ibWF0cml4IiB2YWx1ZXM9IjAgMCAwIDAgMC42Nzg0MzEgMCAwIDAgMCAwLjczNzI1NSAwIDAgMCAwIDAuODExNzY1IDAgMCAwIDAuMjQgMCIvPgo8ZmVCbGVuZCBtb2RlPSJub3JtYWwiIGluMj0iQmFja2dyb3VuZEltYWdlRml4IiByZXN1bHQ9ImVmZmVjdDFfZHJvcFNoYWRvd18wXzI0Ii8+CjxmZUJsZW5kIG1vZGU9Im5vcm1hbCIgaW49IlNvdXJjZUdyYXBoaWMiIGluMj0iZWZmZWN0MV9kcm9wU2hhZG93XzBfMjQiIHJlc3VsdD0ic2hhcGUiLz4KPGZlQ29sb3JNYXRyaXggaW49IlNvdXJjZUFscGhhIiB0eXBlPSJtYXRyaXgiIHZhbHVlcz0iMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMTI3IDAiIHJlc3VsdD0iaGFyZEFscGhhIi8+CjxmZU9mZnNldC8+CjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjYiLz4KPGZlQ29tcG9zaXRlIGluMj0iaGFyZEFscGhhIiBvcGVyYXRvcj0iYXJpdGhtZXRpYyIgazI9Ii0xIiBrMz0iMSIvPgo8ZmVDb2xvck1hdHJpeCB0eXBlPSJtYXRyaXgiIHZhbHVlcz0iMCAwIDAgMCAxIDAgMCAwIDAgMSAwIDAgMCAwIDEgMCAwIDAgMSAwIi8+CjxmZUJsZW5kIG1vZGU9Im5vcm1hbCIgaW4yPSJzaGFwZSIgcmVzdWx0PSJlZmZlY3QyX2lubmVyU2hhZG93XzBfMjQiLz4KPC9maWx0ZXI+CjxjbGlwUGF0aCBpZD0iYmdibHVyXzBfMF8yNF9jbGlwX3BhdGgiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAgNCkiPjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNNTAuMjY3MyAxNS4yNDQyQzUzLjg1MDcgMTUuMjQ0MiA1Ni43NTU4IDE4LjE0OTIgNTYuNzU1OCAyMS43MzI3VjI0LjU3MTRDNTYuNzU1OCAyNS40NjczIDU3LjQ4MjEgMjYuMTkzNSA1OC4zNzc5IDI2LjE5MzVDNTkuMjczNyAyNi4xOTM1IDYwIDI1LjQ2NzMgNjAgMjQuNTcxNFYyMS43MzI3QzYwIDE2LjM1NzUgNTUuNjQyNiAxMiA1MC4yNjczIDEySDQ3LjQyODZDNDYuNTMyOCAxMiA0NS44MDY1IDEyLjcyNjIgNDUuODA2NSAxMy42MjIxQzQ1LjgwNjUgMTQuNTE4IDQ2LjUzMjggMTUuMjQ0MiA0Ny40Mjg2IDE1LjI0NDJINTAuMjY3M1oiLz4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik01MC4yNjczIDUyLjc1NThDNTMuODUwNyA1Mi43NTU4IDU2Ljc1NTggNDkuODUwNyA1Ni43NTU4IDQ2LjI2NzNWNDMuNDI4NkM1Ni43NTU4IDQyLjUzMjggNTcuNDgyMSA0MS44MDY1IDU4LjM3NzkgNDEuODA2NUM1OS4yNzM3IDQxLjgwNjUgNjAgNDIuNTMyOCA2MCA0My40Mjg2VjQ2LjI2NzNDNjAgNTEuNjQyNiA1NS42NDI2IDU2IDUwLjI2NzMgNTZINDcuNDI4NkM0Ni41MzI4IDU2IDQ1LjgwNjUgNTUuMjczNyA0NS44MDY1IDU0LjM3NzlDNDUuODA2NSA1My40ODIxIDQ2LjUzMjggNTIuNzU1OCA0Ny40Mjg2IDUyLjc1NThINTAuMjY3M1oiLz4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0yNS43MzI3IDUyLjc1NThDMjIuMTQ5MiA1Mi43NTU4IDE5LjI0NDIgNDkuODUwNyAxOS4yNDQyIDQ2LjI2NzNWNDMuNDI4NkMxOS4yNDQyIDQyLjUzMjggMTguNTE4IDQxLjgwNjUgMTcuNjIyMSA0MS44MDY1QzE2LjcyNjIgNDEuODA2NSAxNiA0Mi41MzI4IDE2IDQzLjQyODZWNDYuMjY3M0MxNiA1MS42NDI2IDIwLjM1NzUgNTYgMjUuNzMyNyA1NkgyOC41NzE0QzI5LjQ2NzMgNTYgMzAuMTkzNSA1NS4yNzM3IDMwLjE5MzUgNTQuMzc3OUMzMC4xOTM1IDUzLjQ4MjEgMjkuNDY3MyA1Mi43NTU4IDI4LjU3MTQgNTIuNzU1OEgyNS43MzI3WiIvPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTI1LjczMjcgMTUuMjQ0MkMyMi4xNDkyIDE1LjI0NDIgMTkuMjQ0MiAxOC4xNDkyIDE5LjI0NDIgMjEuNzMyN1YyNC41NzE0QzE5LjI0NDIgMjUuNDY3MyAxOC41MTggMjYuMTkzNSAxNy42MjIxIDI2LjE5MzVDMTYuNzI2MiAyNi4xOTM1IDE2IDI1LjQ2NzMgMTYgMjQuNTcxNFYyMS43MzI3QzE2IDE2LjM1NzUgMjAuMzU3NSAxMiAyNS43MzI3IDEySDI4LjU3MTRDMjkuNDY3MyAxMiAzMC4xOTM1IDEyLjcyNjIgMzAuMTkzNSAxMy42MjIxQzMwLjE5MzUgMTQuNTE4IDI5LjQ2NzMgMTUuMjQ0MiAyOC41NzE0IDE1LjI0NDJIMjUuNzMyN1oiLz4KPC9jbGlwUGF0aD48bGluZWFyR3JhZGllbnQgaWQ9InBhaW50MF9saW5lYXJfMF8yNCIgeDE9IjIyIiB5MT0iMjQuMTg2NyIgeDI9IjU1LjM3NDQiIHkyPSIzMC42MDI5IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IiNGQkZCRkMiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjRjVGN0ZBIi8+CjwvbGluZWFyR3JhZGllbnQ+CjxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQxX2xpbmVhcl8wXzI0IiB4MT0iMzEuMzEzNCIgeTE9IjEyLjUyNDQiIHgyPSI1OS42OTg2IiB5Mj0iMjUuMTA0MyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgo8c3RvcCBvZmZzZXQ9IjAuMTM2MDI3IiBzdG9wLWNvbG9yPSJ3aGl0ZSIvPgo8c3RvcCBvZmZzZXQ9IjAuNDYyOTUxIiBzdG9wLWNvbG9yPSJ3aGl0ZSIgc3RvcC1vcGFjaXR5PSIwIi8+CjwvbGluZWFyR3JhZGllbnQ+CjxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQyX2xpbmVhcl8wXzI0IiB4MT0iNDEuMDAzNiIgeTE9IjExIiB4Mj0iNDEuMDAxMSIgeTI9IjUzLjUiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KPHN0b3Agc3RvcC1jb2xvcj0iIzI5MkEzOSIvPgo8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiM1NTYxOEIiLz4KPC9saW5lYXJHcmFkaWVudD4KPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDNfbGluZWFyXzBfMjQiIHgxPSIxNiIgeTE9IjIwLjUwNjciIHgyPSI2MS44ODk4IiB5Mj0iMjkuMzI5IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IiNGQkZCRkMiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjRjVGN0ZBIi8+CjwvbGluZWFyR3JhZGllbnQ+CjxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQ0X2xpbmVhcl8wXzI0IiB4MT0iMjguODA2IiB5MT0iNC40NzExMSIgeDI9IjY3LjgzNTYiIHkyPSIyMS43Njg0IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIG9mZnNldD0iMC4xMzYwMjciIHN0b3AtY29sb3I9IndoaXRlIi8+CjxzdG9wIG9mZnNldD0iMC40NjI5NTEiIHN0b3AtY29sb3I9IndoaXRlIiBzdG9wLW9wYWNpdHk9IjAiLz4KPC9saW5lYXJHcmFkaWVudD4KPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDVfbGluZWFyXzBfMjQiIHgxPSIxNiIgeTE9IjIwLjUwNjciIHgyPSI2MS44ODk4IiB5Mj0iMjkuMzI5IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IiNGQkZCRkMiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjRjVGN0ZBIi8+CjwvbGluZWFyR3JhZGllbnQ+CjxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQ2X2xpbmVhcl8wXzI0IiB4MT0iMjguODA2IiB5MT0iNC40NzExMSIgeDI9IjY3LjgzNTYiIHkyPSIyMS43Njg0IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIG9mZnNldD0iMC4xMzYwMjciIHN0b3AtY29sb3I9IndoaXRlIi8+CjxzdG9wIG9mZnNldD0iMC40NjI5NTEiIHN0b3AtY29sb3I9IndoaXRlIiBzdG9wLW9wYWNpdHk9IjAiLz4KPC9saW5lYXJHcmFkaWVudD4KPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDdfbGluZWFyXzBfMjQiIHgxPSIxNiIgeTE9IjIwLjUwNjciIHgyPSI2MS44ODk4IiB5Mj0iMjkuMzI5IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IiNGQkZCRkMiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjRjVGN0ZBIi8+CjwvbGluZWFyR3JhZGllbnQ+CjxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQ4X2xpbmVhcl8wXzI0IiB4MT0iMjguODA2IiB5MT0iNC40NzExMSIgeDI9IjY3LjgzNTYiIHkyPSIyMS43Njg0IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIG9mZnNldD0iMC4xMzYwMjciIHN0b3AtY29sb3I9IndoaXRlIi8+CjxzdG9wIG9mZnNldD0iMC40NjI5NTEiIHN0b3AtY29sb3I9IndoaXRlIiBzdG9wLW9wYWNpdHk9IjAiLz4KPC9saW5lYXJHcmFkaWVudD4KPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDlfbGluZWFyXzBfMjQiIHgxPSIxNiIgeTE9IjIwLjUwNjciIHgyPSI2MS44ODk4IiB5Mj0iMjkuMzI5IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IiNGQkZCRkMiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjRjVGN0ZBIi8+CjwvbGluZWFyR3JhZGllbnQ+CjxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQxMF9saW5lYXJfMF8yNCIgeDE9IjI4LjgwNiIgeTE9IjQuNDcxMTEiIHgyPSI2Ny44MzU2IiB5Mj0iMjEuNzY4NCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgo8c3RvcCBvZmZzZXQ9IjAuMTM2MDI3IiBzdG9wLWNvbG9yPSJ3aGl0ZSIvPgo8c3RvcCBvZmZzZXQ9IjAuNDYyOTUxIiBzdG9wLWNvbG9yPSJ3aGl0ZSIgc3RvcC1vcGFjaXR5PSIwIi8+CjwvbGluZWFyR3JhZGllbnQ+CjxwYXRoIGlkPSJzdHJva2UwXzBfMjQiIGQ9Ik01MC4yNjczIDE1LjI0NDJDNTMuODUwNyAxNS4yNDQyIDU2Ljc1NTggMTguMTQ5MiA1Ni43NTU4IDIxLjczMjdWMjQuNTcxNEM1Ni43NTU4IDI1LjQ2NzMgNTcuNDgyMSAyNi4xOTM1IDU4LjM3NzkgMjYuMTkzNUM1OS4yNzM3IDI2LjE5MzUgNjAgMjUuNDY3MyA2MCAyNC41NzE0VjIxLjczMjdDNjAgMTYuMzU3NSA1NS42NDI2IDEyIDUwLjI2NzMgMTJINDcuNDI4NkM0Ni41MzI4IDEyIDQ1LjgwNjUgMTIuNzI2MiA0NS44MDY1IDEzLjYyMjFDNDUuODA2NSAxNC41MTggNDYuNTMyOCAxNS4yNDQyIDQ3LjQyODYgMTUuMjQ0Mkg1MC4yNjczWiIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiLz4KPHBhdGggaWQ9InN0cm9rZTFfMF8yNCIgZD0iTTUwLjI2NzMgNTIuNzU1OEM1My44NTA3IDUyLjc1NTggNTYuNzU1OCA0OS44NTA3IDU2Ljc1NTggNDYuMjY3M1Y0My40Mjg2QzU2Ljc1NTggNDIuNTMyOCA1Ny40ODIxIDQxLjgwNjUgNTguMzc3OSA0MS44MDY1QzU5LjI3MzcgNDEuODA2NSA2MCA0Mi41MzI4IDYwIDQzLjQyODZWNDYuMjY3M0M2MCA1MS42NDI2IDU1LjY0MjYgNTYgNTAuMjY3MyA1Nkg0Ny40Mjg2QzQ2LjUzMjggNTYgNDUuODA2NSA1NS4yNzM3IDQ1LjgwNjUgNTQuMzc3OUM0NS44MDY1IDUzLjQ4MjEgNDYuNTMyOCA1Mi43NTU4IDQ3LjQyODYgNTIuNzU1OEg1MC4yNjczWiIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiLz4KPHBhdGggaWQ9InN0cm9rZTJfMF8yNCIgZD0iTTI1LjczMjcgNTIuNzU1OEMyMi4xNDkyIDUyLjc1NTggMTkuMjQ0MiA0OS44NTA3IDE5LjI0NDIgNDYuMjY3M1Y0My40Mjg2QzE5LjI0NDIgNDIuNTMyOCAxOC41MTggNDEuODA2NSAxNy42MjIxIDQxLjgwNjVDMTYuNzI2MiA0MS44MDY1IDE2IDQyLjUzMjggMTYgNDMuNDI4NlY0Ni4yNjczQzE2IDUxLjY0MjYgMjAuMzU3NSA1NiAyNS43MzI3IDU2SDI4LjU3MTRDMjkuNDY3MyA1NiAzMC4xOTM1IDU1LjI3MzcgMzAuMTkzNSA1NC4zNzc5QzMwLjE5MzUgNTMuNDgyMSAyOS40NjczIDUyLjc1NTggMjguNTcxNCA1Mi43NTU4SDI1LjczMjdaIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPgo8cGF0aCBpZD0ic3Ryb2tlM18wXzI0IiBkPSJNMjUuNzMyNyAxNS4yNDQyQzIyLjE0OTIgMTUuMjQ0MiAxOS4yNDQyIDE4LjE0OTIgMTkuMjQ0MiAyMS43MzI3VjI0LjU3MTRDMTkuMjQ0MiAyNS40NjczIDE4LjUxOCAyNi4xOTM1IDE3LjYyMjEgMjYuMTkzNUMxNi43MjYyIDI2LjE5MzUgMTYgMjUuNDY3MyAxNiAyNC41NzE0VjIxLjczMjdDMTYgMTYuMzU3NSAyMC4zNTc1IDEyIDI1LjczMjcgMTJIMjguNTcxNEMyOS40NjczIDEyIDMwLjE5MzUgMTIuNzI2MiAzMC4xOTM1IDEzLjYyMjFDMzAuMTkzNSAxNC41MTggMjkuNDY3MyAxNS4yNDQyIDI4LjU3MTQgMTUuMjQ0MkgyNS43MzI3WiIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiLz4KPC9kZWZzPgo8L3N2Zz4K" alt=""></span>
         <span class="brand-label">СООП</span>
       </a>
@@ -1672,7 +1747,7 @@ function readAddress() {
   };
 }
 
-const state = { ...readAddress(), entryGroup: "users", selectedArticles: null };
+const state = { ...readAddress(), selectedArticles: null };
 let charts;
 let data;
 
@@ -1888,20 +1963,12 @@ function generateData() {
 
   const userAdds = countFlow("admin-user-adds", 1_396, 1_317);
   const userLeaves = countFlow("admin-user-leaves", 718, 753);
-  const staffAdds = countFlow("admin-staff-adds", 1_794, 1_630);
-  const staffLeaves = countFlow("admin-staff-leaves", 688, 730);
   const admin = {
     users: {
       people: stock(48_672, userAdds, userLeaves, "admin-users", territories),
       visits: countFlow("admin-user-visits", 846_392, 799_995, "activity"),
       adds: userAdds,
       leaves: userLeaves
-    },
-    staff: {
-      people: stock(74_218, staffAdds, staffLeaves, "admin-staff", territories),
-      visits: countFlow("admin-staff-visits", 1_162_834, 1_121_575, "activity"),
-      adds: staffAdds,
-      leaves: staffLeaves
     }
   };
 
@@ -1979,7 +2046,7 @@ function rowValue(metric, plain = true) {
 }
 
 function drawNavigation() {
-  const summary = { id: "summary", label: "Сводка по модулям", icon: "grid" };
+  const summary = { id: "summary", label: "Общая сводка", icon: "grid" };
   function link(module, extraClass = "") {
     const current = module.id === state.route ? ' aria-current="page"' : "";
     return '<a class="nav-link' + extraClass + '" href="' + hashFor(module.id) + '"' + current +
@@ -2012,7 +2079,7 @@ function compareNote() {
 function intro(title, detail = false) {
   const { current, previous } = data.periods;
   return '<div class="intro' + (detail ? " detail-intro" : "") + '"><div>' +
-    (detail ? '<a class="breadcrumb" href="' + hashFor("summary") + '">' + icon("left", "icon-sm") + 'Сводка по модулям</a>' : "") +
+    (detail ? '<a class="breadcrumb" href="' + hashFor("summary") + '">' + icon("left", "icon-sm") + 'Общая сводка</a>' : "") +
     '<h1 id="page-title" tabindex="-1">' + title + '</h1>' +
     '<p class="period-context"><span class="period-current">' + dayRange(current.first, current.last, true) +
     '</span><span class="period-divider" aria-hidden="true"></span><span>' + comparisonRange(previous) + '</span></p></div>' +
@@ -2037,10 +2104,7 @@ function lineLegend() {
 function lineWidget() {
   return '<header class="panel-head"><div><h3 id="line-title">Динамика входов</h3><p class="panel-subtitle">Входы в СООП ' +
     (state.days > 30 ? 'по неделям' : 'по дням') + '</p><div class="line-total" id="line-total"></div></div>' +
-    '<div class="segment" role="group" aria-label="Группа для графика входов">' +
-    '<button type="button" data-entry-group="users" aria-pressed="' + (state.entryGroup === "users") + '">Пользователи</button>' +
-    '<button type="button" data-entry-group="staff" aria-pressed="' + (state.entryGroup === "staff") + '">Сотрудники</button>' +
-    '</div></header>' + linePlot("line-plot", "График входов", { describedBy: "line-total" }) + lineLegend();
+'</header>' + linePlot("line-plot", "График входов", { describedBy: "line-total" }) + lineLegend();
 }
 
 function visibleArticles() {
@@ -2277,11 +2341,27 @@ function adminGroup(name, group) {
     ).join("") + '</dl></section>';
 }
 
+function adminOverviewRanking() {
+  const top = departmentRows()
+    .map(({ name, users }) => ({ name, value: users.people.value }))
+    .sort((first, second) => second.value - first.value)
+    .slice(0, 3);
+  const maximum = Math.max(1, top[0]?.value ?? 0);
+  const rows = top.map(({ name, value }) =>
+    '<li><div class="admin-ranking-label"><span>' + name + '</span><b class="number">' + number.format(value) + '</b></div>' +
+    '<span class="bar-track" aria-hidden="true">' +
+    '<span class="bar-fill" style="--bar-width:' + 100 * value / maximum + '%"></span></span></li>'
+  ).join("");
+  return '<section class="overview-breakdown admin-overview-ranking" aria-labelledby="admin-ranking-title">' +
+    '<h3 id="admin-ranking-title">Топ-3 подразделения</h3>' +
+    '<ol aria-label="По численности пользователей СООП">' + rows + '</ol></section>';
+}
+
 function adminOverview() {
-  const { users, staff } = data.admin;
+  const { users } = data.admin;
   const chart = '<section class="chart-embedded" aria-labelledby="line-title">' + lineWidget() + '</section>';
   return overviewPanel("admin", '<div class="admin-overview-body"><div class="admin-overview-groups">' +
-    adminGroup("Пользователи СООП", users) + adminGroup("Сотрудники подразделений", staff) + '</div>' +
+    adminGroup("Пользователи СООП", users) + adminOverviewRanking() + '</div>' +
     chart + '</div>');
 }
 
@@ -2345,31 +2425,37 @@ function pendingOverview() {
 }
 
 function summaryPage() {
-  return intro("Сводка по модулям") +
+  return intro("Общая сводка") +
     '<div class="overview-comparison">' + compareNote() + '</div>' +
     '<div class="overview-board">' + adminOverview() + practiceOverview() +
     districtOverview() + patrolOverview() + eventsOverview() + pendingOverview() + '</div>';
 }
 
 
-function adminDetailCard(key, label, iconName) {
-  const { people, visits, adds, leaves } = data.admin[key];
-  const groupId = "admin-group-" + key;
-  const timeUnit = state.days > 30 ? "По неделям" : "По дням";
-  return '<section class="panel admin-detail-card" aria-labelledby="' + groupId + '">' +
-    '<header class="admin-detail-head"><span class="module-icon">' + icon(iconName, "icon-sm") +
-    '</span><h2 id="' + groupId + '">' + label + '</h2></header>' +
-    '<div class="admin-detail-metrics">' + stat("Численность", people) + stat("Входы", visits) +
-    stat("Добавилось", adds) + stat("Выбыло", leaves) + '</div>' +
-    '<div class="admin-detail-chart"><div class="admin-chart-heading"><h3>Динамика входов</h3><span>' + timeUnit + '</span></div>' +
-    linePlot("admin-plot-" + key, "График входов. " + label, { adminGroup: key }) + '</div></section>';
+const adminBreakdownMetrics = [
+  ["people", "Численность на конец периода"],
+  ["visits", "Входы за период"],
+  ["adds", "Добавилось за период"],
+  ["leaves", "Выбыло за период"]
+];
+let adminBreakdownMetric = "people";
+
+function adminDepartmentChart() {
+  return '<div class="admin-detail-chart"><div class="admin-chart-heading admin-breakdown-heading">' +
+    '<h3 id="admin-breakdown-title">Пользователи по подразделениям</h3>' +
+    '<select id="admin-breakdown-metric" aria-label="Показатель по подразделениям">' +
+    adminBreakdownMetrics.map(([key, label]) => '<option value="' + key + '">' + label + '</option>').join("") +
+    '</select></div><ul class="admin-breakdown-list" tabindex="0" aria-labelledby="admin-breakdown-title"></ul></div>';
 }
 
 function adminDetails() {
-  return '<div class="admin-comparison">' + compareNote() + lineLegend() + '</div>' +
-    '<div class="admin-detail-grid detail-block">' +
-    adminDetailCard("users", "Пользователи СООП", "user-round") +
-    adminDetailCard("staff", "Сотрудники подразделений", "building") + '</div>' + departmentTable();
+  const { people, visits, adds, leaves } = data.admin.users;
+  return '<div class="admin-comparison">' + compareNote() + '</div>' +
+    '<section class="panel admin-detail-card detail-block" aria-labelledby="admin-users-title">' +
+    '<header class="admin-detail-head"><h2 id="admin-users-title">Пользователи СООП</h2></header>' +
+    '<div class="admin-detail-metrics">' + stat("Численность", people) + stat("Входы", visits) +
+    stat("Добавилось", adds) + stat("Выбыло", leaves) + '</div>' +
+    adminDepartmentChart() + '</section>' + departmentTable();
 }
 
 function groupByDepartment(group, topic) {
@@ -2396,8 +2482,7 @@ function groupByDepartment(group, topic) {
 }
 
 const departmentGroups = [
-  ["users", "Пользователи СООП"],
-  ["staff", "Сотрудники подразделений"]
+  ["users", "Пользователи СООП"]
 ];
 const departmentMetrics = [
   ["people", "Численность"],
@@ -2407,57 +2492,61 @@ const departmentMetrics = [
 ];
 const departmentNameColumn = { key: "name", label: "Подразделение" };
 const departmentMetricColumns = departmentGroups.flatMap(([group, groupLabel]) =>
-  departmentMetrics.map(([metric, label], index) => ({
-    key: group + "-" + metric, label, group, groupLabel, metric,
-    split: group === "staff" && index === 0
+  departmentMetrics.map(([metric, label]) => ({
+    key: group + "-" + metric, label, group, groupLabel, metric
   }))
 );
 const departmentColumns = new Map([departmentNameColumn, ...departmentMetricColumns].map(column => [column.key, column]));
 const departmentTableView = { sort: null, filters: new Map() };
-let disposeDepartmentTable;
 
 function departmentColumnLabel(column) {
   return column.group ? column.label + " · " + column.groupLabel : column.label;
 }
 
 function departmentColumnHeader(column) {
-  const { key, label, split } = column;
+  const { key, label } = column;
   const nameColumn = column === departmentNameColumn;
-  const attributes = nameColumn ? ' rowspan="2" class="dept-name"' : split ? ' class="group-split"' : "";
+  const attributes = nameColumn ? ' class="dept-name"' : "";
   const caption = departmentColumnLabel(column);
-  return '<th scope="col"' + attributes + '><div class="dept-column-head">' +
+  return '<th scope="col"' + attributes + '>' +
     '<button type="button" class="dept-sort" data-dept-sort="' + key + '" aria-label="Сортировать столбец «' + caption + '»">' +
-    '<span>' + label + '</span>' + icon("sort", "dept-sort-icon") + '</button>' +
-    '<button type="button" class="dept-filter" data-dept-filter="' + key + '" aria-label="Фильтр «' + caption +
-    '»" title="Фильтр «' + caption + '»" aria-controls="dept-filter-popup" aria-expanded="false">' +
-    icon("filter", "icon-sm") + '</button></div></th>';
+    '<span>' + label + '</span>' + icon("sort", "dept-sort-icon") + '</button></th>';
+}
+
+function departmentFilterForm() {
+  return '<form class="dept-filters" aria-label="Фильтры таблицы подразделений" aria-controls="dept-table">' +
+    '<label class="dept-filter-name"><span>Подразделение</span>' +
+    '<input type="search" name="query" placeholder="Введите название" autocomplete="off"></label>' +
+    '<div class="dept-filter-groups">' + departmentGroups.map(([group, label]) =>
+      '<fieldset class="dept-filter-group" aria-label="' + label + '"><div class="dept-filter-metrics">' +
+      departmentMetricColumns.filter(column => column.group === group).map(column => {
+        const caption = departmentColumnLabel(column);
+        return '<fieldset class="dept-filter-range" data-dept-range="' + column.key + '"><legend>' + column.label +
+          '</legend><div class="dept-filter-bounds">' +
+          '<input type="number" name="' + column.key + '-min" min="0" step="1" inputmode="numeric" placeholder="От" aria-label="' + caption + ', от">' +
+          '<input type="number" name="' + column.key + '-max" min="0" step="1" inputmode="numeric" placeholder="До" aria-label="' + caption + ', до">' +
+          '</div></fieldset>';
+      }).join("") + '</div></fieldset>'
+    ).join("") + '</div>' +
+    '<div class="dept-filter-actions"><button type="reset" class="dept-filter-reset">Сбросить всё</button>' +
+    '<button type="submit" class="dept-filter-search"><img class="dept-search-icon" src="data:image/svg+xml;base64,PHN2ZyBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiBvdmVyZmxvdz0idmlzaWJsZSIgc3R5bGU9ImRpc3BsYXk6IGJsb2NrOyIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiB2aWV3Qm94PSIwIDAgMjAgMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxnIGlkPSJHZW5lcmFsL1NlYXJjaCI+CjxwYXRoIGlkPSJWZWN0b3IiIGQ9Ik04LjMzMzMzIDMuMzMzMzNDNS41NzE5MSAzLjMzMzMzIDMuMzMzMzMgNS41NzE5MSAzLjMzMzMzIDguMzMzMzNDMy4zMzMzMyAxMS4wOTQ4IDUuNTcxOTEgMTMuMzMzMyA4LjMzMzMzIDEzLjMzMzNDMTEuMDk0OCAxMy4zMzMzIDEzLjMzMzMgMTEuMDk0OCAxMy4zMzMzIDguMzMzMzNDMTMuMzMzMyA1LjU3MTkxIDExLjA5NDggMy4zMzMzMyA4LjMzMzMzIDMuMzMzMzNaTTEuNjY2NjcgOC4zMzMzM0MxLjY2NjY3IDQuNjUxNDMgNC42NTE0MyAxLjY2NjY3IDguMzMzMzMgMS42NjY2N0MxMi4wMTUyIDEuNjY2NjcgMTUgNC42NTE0MyAxNSA4LjMzMzMzQzE1IDkuODczOTEgMTQuNDc3NCAxMS4yOTI0IDEzLjU5OTkgMTIuNDIxM0wxOC4wODkzIDE2LjkxMDdDMTguNDE0NyAxNy4yMzYyIDE4LjQxNDcgMTcuNzYzOCAxOC4wODkzIDE4LjA4OTNDMTcuNzYzOCAxOC40MTQ3IDE3LjIzNjIgMTguNDE0NyAxNi45MTA3IDE4LjA4OTNMMTIuNDIxNCAxMy41OTk4QzExLjI5MjUgMTQuNDc3NCA5Ljg3Mzk0IDE1IDguMzMzMzMgMTVDNC42NTE0MyAxNSAxLjY2NjY3IDEyLjAxNTIgMS42NjY2NyA4LjMzMzMzWiIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGZpbGw9IndoaXRlIi8+CjwvZz4KPC9zdmc+Cg==" alt="" width="20" height="20">Поиск</button></div>' +
+    '<p id="dept-filter-error" class="dept-filter-error" role="alert" hidden></p></form>';
 }
 
 function departmentTable() {
   return '<section class="panel dept-panel detail-block" aria-labelledby="table-title">' +
     '<header class="dept-toolbar"><div class="dept-title"><h2 id="table-title">Подразделения</h2>' +
-    '<p id="dept-count" role="status"></p></div>' +
-    '<button type="button" class="dept-secondary" data-dept-clear-all hidden>Сбросить фильтры</button></header>' +
+    '<p id="dept-count" role="status"></p></div></header>' + departmentFilterForm() +
     '<div class="table-scroll" tabindex="0" role="region" aria-label="Таблица подразделений">' +
-    '<table class="dept-table"><colgroup><col class="dept-name-col"></colgroup><colgroup span="4"></colgroup>' +
-    '<colgroup span="4"></colgroup><thead><tr>' + departmentColumnHeader(departmentNameColumn) +
-    departmentGroups.map(([group, label]) =>
-      '<th scope="colgroup" colspan="4"' + (group === "staff" ? ' class="group-split"' : "") + '>' + label + '</th>'
-    ).join("") + '</tr><tr>' + departmentMetricColumns.map(departmentColumnHeader).join("") +
-    '</tr></thead><tbody></tbody></table></div>' +
-    '<form id="dept-filter-popup" class="dept-filter-popup" role="dialog" aria-labelledby="dept-filter-title" hidden>' +
-    '<h3 id="dept-filter-title"></h3><p class="dept-filter-group" hidden></p>' +
-    '<label class="dept-filter-text"><span>Название подразделения</span><input type="search" name="query" autocomplete="off"></label>' +
-    '<div class="dept-filter-range"><label><span>От</span><input type="number" name="min" min="0" step="1" inputmode="numeric"></label>' +
-    '<label><span>До</span><input type="number" name="max" min="0" step="1" inputmode="numeric"></label></div>' +
-    '<p class="dept-filter-error" role="alert" hidden></p>' +
-    '<div class="dept-filter-actions"><button type="submit" class="dept-primary">Применить</button>' +
-    '<button type="button" class="dept-secondary" data-dept-clear-column>Сбросить</button></div></form></section>';
+    '<table class="dept-table" id="dept-table"><colgroup><col class="dept-name-col"></colgroup><colgroup span="4"></colgroup>' +
+    '<thead><tr>' + departmentColumnHeader(departmentNameColumn) +
+    departmentMetricColumns.map(departmentColumnHeader).join("") +
+    '</tr></thead><tbody></tbody></table></div></section>';
 }
 
 function departmentRows() {
   const groups = Object.fromEntries(departmentGroups.map(([key]) => [key, groupByDepartment(data.admin[key], key + "-by-department")]));
-  return departments.map(({ label }, index) => ({ name: label, users: groups.users[index], staff: groups.staff[index] }));
+  return departments.map(({ label }, index) => ({ name: label, users: groups.users[index] }));
 }
 
 function departmentColumnValue(row, column) {
@@ -2484,38 +2573,51 @@ function visibleDepartmentRows(rows) {
 }
 
 function initDepartmentTable() {
-  disposeDepartmentTable?.();
-  disposeDepartmentTable = undefined;
   const panel = dashboard.querySelector(".dept-panel");
   if (!panel) return;
 
   const rows = departmentRows();
+  const breakdown = dashboard.querySelector(".admin-breakdown-list");
+  const metricSelect = dashboard.querySelector("#admin-breakdown-metric");
+  metricSelect.value = adminBreakdownMetric;
+
+  function drawBreakdown() {
+    const value = row => row.users[adminBreakdownMetric].value;
+    const maximum = Math.max(1, ...rows.map(value));
+    const ranked = [...rows].sort((a, b) => value(b) - value(a));
+    breakdown.innerHTML = ranked.map(row =>
+      '<li><span>' + row.name + '</span><span class="admin-breakdown-track" aria-hidden="true"><i style="width:' +
+      (100 * value(row) / maximum).toFixed(2) + '%"></i></span><b class="number">' + number.format(value(row)) + '</b></li>'
+    ).join("");
+  }
+
+  metricSelect.addEventListener("change", () => {
+    adminBreakdownMetric = metricSelect.value;
+    breakdown.scrollTop = 0;
+    drawBreakdown();
+  });
+  drawBreakdown();
+
   const body = panel.querySelector("tbody");
   const count = panel.querySelector("#dept-count");
-  const resetAll = panel.querySelector("[data-dept-clear-all]");
   const sortButtons = [...panel.querySelectorAll("[data-dept-sort]")];
-  const filterButtons = [...panel.querySelectorAll("[data-dept-filter]")];
-  const tableScroll = panel.querySelector(".table-scroll");
-  const popup = panel.querySelector("#dept-filter-popup");
-  const popupTitle = popup.querySelector("h3");
-  const popupGroup = popup.querySelector(".dept-filter-group");
-  const textField = popup.querySelector(".dept-filter-text");
-  const rangeFields = popup.querySelector(".dept-filter-range");
-  const queryInput = popup.querySelector("[name=query]");
-  const minInput = popup.querySelector("[name=min]");
-  const maxInput = popup.querySelector("[name=max]");
-  const error = popup.querySelector(".dept-filter-error");
-  let anchor;
+  const filterForm = panel.querySelector(".dept-filters");
+  const queryInput = filterForm.querySelector("[name=query]");
+  const ranges = [...filterForm.querySelectorAll("[data-dept-range]")].map(fieldset => {
+    const [minInput, maxInput] = fieldset.querySelectorAll("input");
+    return { key: fieldset.dataset.deptRange, minInput, maxInput };
+  });
+  const error = filterForm.querySelector(".dept-filter-error");
+  let invalidBound;
 
   function drawRows() {
     const visible = visibleDepartmentRows(rows);
     body.innerHTML = visible.length ? visible.map(row =>
       '<tr><th scope="row" class="dept-name">' + row.name + '</th>' + departmentMetricColumns.map(column =>
-        '<td' + (column.split ? ' class="group-split"' : "") + '>' + rowValue(row[column.group][column.metric]) + '</td>'
+        '<td>' + rowValue(row[column.group][column.metric]) + '</td>'
       ).join("") + '</tr>'
-    ).join("") : '<tr><td class="dept-empty" colspan="9">Подразделения не найдены</td></tr>';
+    ).join("") : '<tr><td class="dept-empty" colspan="5">Подразделения не найдены</td></tr>';
     count.textContent = "Показано " + visible.length + " из " + rows.length;
-    resetAll.hidden = !departmentTableView.filters.size;
 
     for (const button of sortButtons) {
       const sort = departmentTableView.sort;
@@ -2525,138 +2627,71 @@ function initDepartmentTable() {
       else header.removeAttribute("aria-sort");
       button.querySelector(".dept-sort-icon").innerHTML = icons[direction === "ascending" ? "up" : direction === "descending" ? "down" : "sort"];
     }
-    for (const button of filterButtons) {
-      const active = departmentTableView.filters.has(button.dataset.deptFilter);
-      button.classList.toggle("is-filtered", active);
-      button.setAttribute("aria-label", button.title + (active ? ". Фильтр применён" : ""));
+  }
+
+  function restoreFilters() {
+    const { filters } = departmentTableView;
+    queryInput.value = filters.get("name")?.query ?? "";
+    for (const { key, minInput, maxInput } of ranges) {
+      const condition = filters.get(key);
+      minInput.value = condition?.min ?? "";
+      maxInput.value = condition?.max ?? "";
     }
   }
 
-  function closeFilter(restoreFocus = false) {
-    if (!anchor) return;
-    popup.hidden = true;
-    anchor.setAttribute("aria-expanded", "false");
-    if (restoreFocus) anchor.focus({ preventScroll: true });
-    anchor = undefined;
-  }
-
-  function positionFilter() {
-    if (!anchor) return;
-    const button = anchor.getBoundingClientRect();
-    const scroll = tableScroll.getBoundingClientRect();
-    if (button.right <= scroll.left || button.left >= scroll.right ||
-        button.bottom < 0 || button.top > window.innerHeight) {
-      closeFilter();
-      return;
-    }
-    const { width, height } = popup.getBoundingClientRect();
-    const inset = 8;
-    const below = button.bottom + inset;
-    const above = button.top - height - inset;
-    const viewportRight = Math.max(inset, window.innerWidth - width - inset);
-    const viewportBottom = Math.max(inset, window.innerHeight - height - inset);
-    popup.style.left = Math.max(inset, Math.min(button.right - width, viewportRight)) + "px";
-    popup.style.top = Math.max(inset, Math.min(below <= viewportBottom ? below : above, viewportBottom)) + "px";
-  }
-
-  function openFilter(button) {
-    closeFilter();
-    anchor = button;
-    const column = departmentColumns.get(button.dataset.deptFilter);
-    const condition = departmentTableView.filters.get(column.key);
-    const numeric = Boolean(column.group);
-    popupTitle.textContent = column.label;
-    popupGroup.textContent = column.groupLabel ?? "";
-    popupGroup.hidden = !numeric;
-    textField.hidden = numeric;
-    rangeFields.hidden = !numeric;
-    queryInput.disabled = numeric;
-    minInput.disabled = !numeric;
-    maxInput.disabled = !numeric;
-    queryInput.value = condition?.query ?? "";
-    minInput.value = condition?.min ?? "";
-    maxInput.value = condition?.max ?? "";
+  function clearFilterError() {
+    if (!invalidBound) return;
+    invalidBound.removeAttribute("aria-invalid");
+    invalidBound.removeAttribute("aria-describedby");
+    invalidBound = undefined;
     error.hidden = true;
-    popup.hidden = false;
-    button.setAttribute("aria-expanded", "true");
-    positionFilter();
-    if (anchor) (numeric ? minInput : queryInput).focus({ preventScroll: true });
   }
 
-  function applyFilter(condition) {
-    const key = anchor.dataset.deptFilter;
-    if (condition) departmentTableView.filters.set(key, condition);
-    else departmentTableView.filters.delete(key);
-    closeFilter(true);
-    drawRows();
-  }
-
-  popup.addEventListener("input", () => {
-    if (error.hidden) return;
-    error.hidden = true;
-    positionFilter();
-  });
-  popup.addEventListener("submit", event => {
+  filterForm.addEventListener("input", clearFilterError);
+  filterForm.addEventListener("submit", event => {
     event.preventDefault();
-    if (!anchor) return;
-    if (!departmentColumns.get(anchor.dataset.deptFilter).group) {
-      const query = queryInput.value.trim();
-      applyFilter(query ? { query } : null);
-      return;
+    clearFilterError();
+    const filters = new Map();
+    const query = queryInput.value.trim();
+    if (query) filters.set("name", { query });
+    for (const { key, minInput, maxInput } of ranges) {
+      const min = minInput.value === "" ? null : Number(minInput.value);
+      const max = maxInput.value === "" ? null : Number(maxInput.value);
+      if (min !== null && max !== null && min > max) {
+        error.textContent = "В поле «" + departmentColumnLabel(departmentColumns.get(key)) + "» значение «До» должно быть не меньше «От».";
+        error.hidden = false;
+        invalidBound = maxInput;
+        invalidBound.setAttribute("aria-invalid", "true");
+        invalidBound.setAttribute("aria-describedby", error.id);
+        invalidBound.focus({ preventScroll: true });
+        return;
+      }
+      if (min !== null || max !== null) filters.set(key, { min, max });
     }
-    const min = minInput.value === "" ? null : Number(minInput.value);
-    const max = maxInput.value === "" ? null : Number(maxInput.value);
-    if (min !== null && max !== null && min > max) {
-      error.textContent = "Укажите «До» больше или равно «От».";
-      error.hidden = false;
-      positionFilter();
-      return;
-    }
-    applyFilter(min === null && max === null ? null : { min, max });
+    departmentTableView.filters = filters;
+    queryInput.value = query;
+    drawRows();
+  });
+  filterForm.addEventListener("reset", event => {
+    event.preventDefault();
+    clearFilterError();
+    departmentTableView.filters.clear();
+    restoreFilters();
+    drawRows();
   });
 
   panel.addEventListener("click", event => {
     const sortButton = event.target.closest("[data-dept-sort]");
-    const filterButton = event.target.closest("[data-dept-filter]");
-    if (sortButton) {
-      closeFilter();
-      const key = sortButton.dataset.deptSort;
-      const first = key === "name" ? "ascending" : "descending";
-      const second = first === "ascending" ? "descending" : "ascending";
-      const current = departmentTableView.sort?.key === key ? departmentTableView.sort.direction : null;
-      departmentTableView.sort = current === second ? null : { key, direction: current ? second : first };
-      drawRows();
-    } else if (filterButton) {
-      if (anchor === filterButton) closeFilter(true);
-      else openFilter(filterButton);
-    } else if (event.target.closest("[data-dept-clear-column]") && anchor) {
-      applyFilter(null);
-    } else if (event.target.closest("[data-dept-clear-all]")) {
-      closeFilter();
-      departmentTableView.filters.clear();
-      drawRows();
-      sortButtons[0].focus({ preventScroll: true });
-    }
+    if (!sortButton) return;
+    const key = sortButton.dataset.deptSort;
+    const first = key === "name" ? "ascending" : "descending";
+    const second = first === "ascending" ? "descending" : "ascending";
+    const current = departmentTableView.sort?.key === key ? departmentTableView.sort.direction : null;
+    departmentTableView.sort = current === second ? null : { key, direction: current ? second : first };
+    drawRows();
   });
 
-  function closeFromOutside(event) {
-    if (anchor && !popup.contains(event.target) && !anchor.contains(event.target)) closeFilter();
-  }
-  function closeOnEscape(event) {
-    if (event.key !== "Escape" || !anchor) return;
-    event.preventDefault();
-    closeFilter(true);
-  }
-  document.addEventListener("click", closeFromOutside);
-  document.addEventListener("keydown", closeOnEscape);
-  window.addEventListener("resize", positionFilter);
-  window.addEventListener("scroll", positionFilter, true);
-  disposeDepartmentTable = () => {
-    document.removeEventListener("click", closeFromOutside);
-    document.removeEventListener("keydown", closeOnEscape);
-    window.removeEventListener("resize", positionFilter);
-    window.removeEventListener("scroll", positionFilter, true);
-  };
+  restoreFilters();
   drawRows();
 }
 
@@ -3046,7 +3081,7 @@ function initLineCharts() {
   const practiceTotals = practiceView ? currentPracticeArticle()?.metrics ?? data.practice : null;
   const metrics = plots.map(plot => practiceTotals
     ? practiceTotals[plot.dataset.practiceChart]
-    : data.admin[plot.dataset.adminChart ?? state.entryGroup].visits);
+    : data.admin.users.visits);
   if (overview) {
     const metric = metrics[0];
     document.querySelector("#line-total").innerHTML = '<strong class="number">' + number.format(metric.value) + '</strong>' + delta(metric);
@@ -3124,7 +3159,7 @@ function render() {
   drawNavigation();
   const module = modulesById.get(state.route);
   dashboard.innerHTML = module ? detailsPage(module) : summaryPage();
-  document.title = "СООП · " + (module?.label ?? "Сводка по модулям");
+  document.title = "СООП · " + (module?.label ?? "Общая сводка");
   initLineCharts();
   initDonutCharts();
   initDepartmentTable();
@@ -3209,16 +3244,6 @@ dashboard.addEventListener("change", event => {
   document.querySelector(".article-count").textContent = count;
   document.querySelector("#article-bars").innerHTML = articleBody();
   announcement.textContent = "Выбрано статей " + count + ". Сравнение по статьям обновлено.";
-});
-
-dashboard.addEventListener("click", event => {
-  const button = event.target.closest("[data-entry-group]");
-  if (!button || button.dataset.entryGroup === state.entryGroup) return;
-  state.entryGroup = button.dataset.entryGroup;
-  for (const control of dashboard.querySelectorAll("[data-entry-group]")) {
-    control.setAttribute("aria-pressed", String(control === button));
-  }
-  initLineCharts();
 });
 
 document.addEventListener("click", event => {
